@@ -4,6 +4,7 @@ import "./globals.css";
 import {
   ClerkProvider
 } from '@clerk/nextjs'
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,17 @@ export default function RootLayout({
   return (
 
     <html lang="en">
-      <ClerkProvider>
-        <body className={inter.className}>{children}</body>
-      </ClerkProvider>
+      {/* <ThemeProvider
+        attribute="class"
+        defaultTheme=""
+        enableSystem
+        disableTransitionOnChange
+      > */}
+        <ClerkProvider>
+          <body className={inter.className}>{children}</body>
+        </ClerkProvider>
+      {/* </ThemeProvider> */}
+
     </html>
   );
 }
