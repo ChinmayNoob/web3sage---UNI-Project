@@ -327,7 +327,7 @@ export default function Web3TeacherAnalytics() {
                 <YAxis stroke="#9e9e9e" />
                 <Tooltip 
                   contentStyle={{ background: '#fff', border: '1px solid #f0f0f0', borderRadius: '8px' }}
-                  formatter={(value) => [`${Math.round(value/60)} hrs`, 'Watch Time']}
+                  formatter={(value) => [`${Math.round(Number(value)/60)} hrs`, 'Watch Time']}
                 />
                 <Line type="monotone" dataKey="minutes" stroke="#ff9800" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 8 }} />
               </LineChart>

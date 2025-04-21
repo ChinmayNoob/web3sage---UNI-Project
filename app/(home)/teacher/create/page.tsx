@@ -35,11 +35,11 @@ export default function CreateCoursePage() {
     setExercises([...exercises, { id: newId, title: 'New Exercise', difficulty: 'Beginner' }]);
   };
 
-  const removeLesson = (id) => {
+  const removeLesson = (id: number) => {
     setLessons(lessons.filter(lesson => lesson.id !== id));
   };
 
-  const removeExercise = (id) => {
+  const removeExercise = (id: number) => {
     setExercises(exercises.filter(exercise => exercise.id !== id));
   };
 
