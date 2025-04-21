@@ -1,9 +1,10 @@
 'use client'
+
 import { UserButton } from '@clerk/nextjs'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 import { Button } from './ui/button';
-import { LogOut } from 'lucide-react';
+import { LogOut, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
@@ -16,49 +17,67 @@ import {
 
 function NavbarRoutes() {
     const pathname = usePathname();
+    const router = useRouter();
     const { setTheme } = useTheme()
-
-
+    
     const isTeacherPage = pathname?.startsWith("/teacher")
     const isPlayerPage = pathname?.includes("/chapter")
+    const isContentPage = pathname?.startsWith("/content")
+    
     return (
-        <div className='flex items-center gap-x-2 ml-auto'>
-            {(isTeacherPage || isPlayerPage) ? (
-                <Link href="/dashboard">
-                    <Button size="sm" variant="ghost">
-                        <LogOut className="h-4 w-4 mr-2" />
-                        Exit
+        <div className="flex w-full items-center justify-between">
+            <div>
+                {isContentPage && (
+                    <Button 
+                        onClick={() => router.back()} 
+                        variant="ghost" 
+                        size="sm"
+                        className="flex items-center"
+                    >
+                        <ArrowLeft className="h-4 w-4 mr-2" />
+                        Back
                     </Button>
-                </Link>
-
-            ) : (
-                <Link href='/teacher/courses'>
-                    <Button size="sm" variant="ghost">
-                        Teacher Mode
-                    </Button>
-                </Link>
-            )}
-            <UserButton afterSignOutUrl="/" />
-            {/* <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu> */}
+                )}
+            </div>
+            <div className="flex items-center gap-x-2">
+                {(isTeacherPage || isPlayerPage) ? (
+                    <Link href="/">
+                        <Button variant="ghost" size="sm">
+                            <LogOut className="h-4 w-4 mr-2" />
+                            Exit
+                        </Button>
+                    </Link>
+                ) : (
+                    <Link href="/teacher/courses">
+                        <Button variant="ghost" size="sm">
+                            Teacher Mode
+                        </Button>
+                    </Link>
+                )}
+                
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                            <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                            <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                            <span className="sr-only">Toggle theme</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => setTheme("light")}>
+                            Light
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setTheme("dark")}>
+                            Dark
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setTheme("system")}>
+                            System
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+                
+                <UserButton afterSignOutUrl="/" />
+            </div>
         </div>
     )
 }

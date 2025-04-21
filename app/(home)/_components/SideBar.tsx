@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { BarChart, Bot, Compass, LayoutDashboard, List, SquareLibrary } from 'lucide-react';
+import { BarChart, Bot, Compass, LayoutDashboard, List, Map, SquareLibrary } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -21,6 +21,7 @@ const SideBar = () => {
         { href: '/browse', icon: Compass, label: 'Browse' },
         { href: '/chatbot', icon: Bot, label: 'Need Some Help' },
         { href: '/blogs', icon: SquareLibrary, label: 'Blogs' },
+        { href: '/roadmap', icon: Map, label: 'Roadmap' },
     ];
 
     const teacherItems = [

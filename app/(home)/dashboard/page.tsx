@@ -10,6 +10,20 @@ function page() {
             <div className='grid grid-cols-3 gap-y-4'>
                 <Card className='w-[350px]'>
                     <CardHeader>
+                        <CardTitle className='font-bold text-2xl'>Learn Solidity - A Beginners Guide</CardTitle>
+                        <CardDescription>by Fireship</CardDescription>
+                    </CardHeader>
+                    <CardContent className='flex flex-col gap-2'>
+                        <p>
+                            A Quick Intro to Solidity to get intro to the subject
+                        </p>
+                        <Link href="/content">
+                            <Button>Start Course</Button>
+                        </Link>
+                    </CardContent>
+                </Card>
+                <Card className='w-[350px]'>
+                    <CardHeader>
                         <CardTitle className='font-bold text-2xl'>The Road to Web3</CardTitle>
                         <CardDescription>by Alchemy</CardDescription>
                     </CardHeader>
